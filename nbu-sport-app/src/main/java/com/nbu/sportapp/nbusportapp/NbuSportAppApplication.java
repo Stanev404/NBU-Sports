@@ -1,31 +1,30 @@
 package com.nbu.sportapp.nbusportapp;
 
-import com.nbu.sportapp.nbusportapp.entity.User;
-import com.nbu.sportapp.nbusportapp.service.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class NbuSportAppApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NbuSportAppApplication.class, args);
-//        //UserService userService = new UserService();
-//        User ivan = new User("Ivan Stanev","rey_97@abv.bg","123456");
-//        //String res = userService.insert(ivan);
+//        String url = "jdbc:mysql://localhost:3307/world?verifyServerCertificate=false&useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; // ?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+//        String username = "root";
+//        String password = "123456";
 //
-//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//        entityManager.getTransaction().begin();
+//        System.out.println("Connecting database...");
 //
-//        entityManager.persist(ivan);
-//        entityManager.getTransaction().commit();
-//
-//        entityManagerFactory.close();
+//        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+//            System.out.println("Database connected!");
+//        } catch (SQLException e) {
+//            throw new IllegalStateException("Cannot connect the database!", e);
+//        }
 
     }
 }

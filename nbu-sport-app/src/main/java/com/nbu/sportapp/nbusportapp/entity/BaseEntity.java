@@ -2,13 +2,11 @@ package com.nbu.sportapp.nbusportapp.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 /**
- * Every class that needs an id have to inherit BaseEntity.
+ * Every class that needs an id have to inherit nbu.sport.app.entity.BaseEntity.
  * This entity ensures an id for every class that is in the DataBase.
  */
 
@@ -16,19 +14,17 @@ import javax.persistence.MappedSuperclass;
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id")
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     BaseEntity() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    private void setId(String id) {
+    private void setId(Long id) {
         this.id = id;
     }
 
