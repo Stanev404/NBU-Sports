@@ -7,13 +7,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 
 /**
- * A user is a person who is in the website session.
+ * A user with special privileges.
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "admins")
 @EntityListeners(AuditingEntityListener.class)
-public class User extends BaseEntity {
+public class Admin extends BaseEntity {
     @NotBlank
     private String fullName;
 
@@ -24,10 +24,10 @@ public class User extends BaseEntity {
     private String password;
 
 
-    public User() {
+    public Admin() {
     }
 
-    public User(String fullName, String email, String password) {
+    public Admin(String fullName, String email, String password) {
         super();
         this.fullName = fullName;
         this.email = email;

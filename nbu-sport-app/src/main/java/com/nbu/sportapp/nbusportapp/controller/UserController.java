@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/sportapp")
@@ -18,7 +17,7 @@ public class UserController {
     UserDAO userDAO;
 
     /* to save an user*/
-    @PostMapping("/users")
+    @PostMapping("/user")
     public User createUser(@Valid @RequestBody User user){
         return this.userDAO.save(user);
     }
@@ -30,9 +29,9 @@ public class UserController {
     }
 
     /*get an user by ID*/
-    @GetMapping("/users/{id}")
-    public ResponseEntity<Optional<User>> getUserById(@PathVariable(value ="id")Long userId){
-        Optional<User> user = this.userDAO.findOne(userId);
+    @GetMapping("/user/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable(value ="id")Long userId){
+        User user = this.userDAO.findOne(userId);
         if(user == null){
             return ResponseEntity.notFound().build();
         }
@@ -40,30 +39,30 @@ public class UserController {
     }
 
     /*update an user*/
-    @PutMapping("/users/{id}")
+    @PutMapping("/user/{id}")
     public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId,@Valid @RequestBody User userDetails){
-        Optional<User> user = this.userDAO.findOne(userId);
+        User user = this.userDAO.findOne(userId);
         if(user==null){
             return ResponseEntity.notFound().build();
         }
-        user.get().setFullName(userDetails.getFullName());
-        user.get().setEmail(userDetails.getEmail());
-        user.get().setPassword(userDetails.getPassword());
+        user.setFullName(userDetails.getFullName());
+        user.setEmail(userDetails.getEmail());
+        user.setPassword(userDetails.getPassword());
 
-        User updateUser = this.userDAO.save(user.get());
+        User updateUser = this.userDAO.save(user);
         return ResponseEntity.ok().body(updateUser);
 
     }
 
     /*delete an user*/
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/user/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable(value = "id") Long userId){
 
-        Optional<User> user = this.userDAO.findOne(userId);
+        User user = this.userDAO.findOne(userId);
         if(user==null){
             return ResponseEntity.notFound().build();
         }
-        this.userDAO.delete(user.get());
+        this.userDAO.delete(user);
 
         return ResponseEntity.ok().build();
     }

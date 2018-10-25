@@ -1,9 +1,7 @@
 package com.nbu.sportapp.nbusportapp.entity;
 
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 /**
  * Every class that needs an id have to inherit nbu.sport.app.entity.BaseEntity.

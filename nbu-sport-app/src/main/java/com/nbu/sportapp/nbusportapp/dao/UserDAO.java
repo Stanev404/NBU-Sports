@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 // DATA ACCESS OBJECT
 @Service
@@ -29,8 +28,8 @@ public class UserDAO {
 
     /*get an user*/
 
-    public Optional<User> findOne(Long userId){
-        return this.userRepository.findById(userId);
+    public User findOne(Long userId){
+        return this.userRepository.findOne(userId);
     }
 
     /*delete an user*/
