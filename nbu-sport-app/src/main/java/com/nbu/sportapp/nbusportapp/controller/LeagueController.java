@@ -18,21 +18,21 @@ public class LeagueController {
 
     /* to save an league*/
     @PostMapping("/league")
-    public League createLeague(@Valid @RequestBody League league){
+    public League createLeague(@Valid @RequestBody League league) {
         return this.leagueDAO.save(league);
     }
 
     /*get all leagues*/
     @GetMapping("/leagues")
-    public List<League> getAllLeagues(){
+    public List<League> getAllLeagues() {
         return this.leagueDAO.findAll();
     }
 
     /*get an league by ID*/
     @GetMapping("/leagues/{id}")
-    public ResponseEntity<League> getLeagueById(@PathVariable(value ="id")Long leagueId){
+    public ResponseEntity<League> getLeagueById(@PathVariable(value = "id") Long leagueId) {
         League league = this.leagueDAO.findOne(leagueId);
-        if(league == null){
+        if (league == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(league);
@@ -40,9 +40,9 @@ public class LeagueController {
 
     /*update an league*/
     @PutMapping("/leagues/{id}")
-    public ResponseEntity<League> updateLeague(@PathVariable(value = "id") Long leagueId,@Valid @RequestBody League leagueDetails){
+    public ResponseEntity<League> updateLeague(@PathVariable(value = "id") Long leagueId, @Valid @RequestBody League leagueDetails) {
         League league = this.leagueDAO.findOne(leagueId);
-        if(league==null){
+        if (league == null) {
             return ResponseEntity.notFound().build();
         }
 
@@ -54,10 +54,10 @@ public class LeagueController {
 
     /*delete an league*/
     @DeleteMapping("/leagues/{id}")
-    public ResponseEntity<League> deleteLeague(@PathVariable(value = "id") Long leagueId){
+    public ResponseEntity<League> deleteLeague(@PathVariable(value = "id") Long leagueId) {
 
         League league = this.leagueDAO.findOne(leagueId);
-        if(league==null){
+        if (league == null) {
             return ResponseEntity.notFound().build();
         }
         this.leagueDAO.delete(league);
