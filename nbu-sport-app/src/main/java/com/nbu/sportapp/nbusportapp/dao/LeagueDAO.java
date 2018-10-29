@@ -1,7 +1,8 @@
 package com.nbu.sportapp.nbusportapp.dao;
 
+import com.nbu.sportapp.nbusportapp.entity.League;
 import com.nbu.sportapp.nbusportapp.entity.User;
-import com.nbu.sportapp.nbusportapp.repository.UserRepository;
+import com.nbu.sportapp.nbusportapp.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,32 +10,32 @@ import java.util.List;
 
 // DATA ACCESS OBJECT
 @Service
-public class UserDAO {
+public class LeagueDAO {
 
     @Autowired
-    UserRepository userRepository;
+    LeagueRepository leagueRepository;
 
     /*to save an user in DB*/
 
-    public User save(User user){
-        return this.leagueRepository.save(user);
+    public League save(League league) {
+        return this.leagueRepository.save(league);
     }
 
     /*search all users*/
 
-    public List<User> findAll(){
+    public List<League> findAll() {
         return this.leagueRepository.findAll();
     }
 
     /*get an user*/
 
-    public User findOne(Long userId){
+    public League findOne(Long userId) {
         return this.leagueRepository.findOne(userId);
     }
 
     /*delete an user*/
 
-    public void delete(User user){
-        this.leagueRepository.delete(user);
+    public void delete(League league) {
+        this.leagueRepository.delete(league);
     }
 }

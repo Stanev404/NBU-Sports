@@ -19,7 +19,7 @@ public class UserController {
     /* to save an user*/
     @PostMapping("/user")
     public User createUser(@Valid @RequestBody User user){
-        return this.userDAO.save(user);
+            return this.userDAO.save(user);
     }
 
     /*get all users*/
