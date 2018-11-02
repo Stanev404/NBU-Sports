@@ -17,24 +17,24 @@ public class UserDAO {
     /*to save an user in DB*/
 
     public User save(User user){
-        return this.leagueRepository.save(user);
+        return this.userRepository.save(user);
     }
 
     /*search all users*/
 
     public List<User> findAll(){
-        return this.leagueRepository.findAll();
+        return this.userRepository.findAll();
     }
 
     /*get an user*/
 
     public User findOne(Long userId){
-        return this.leagueRepository.findOne(userId);
+        return this.userRepository.findOne(userId);
     }
 
     /*delete an user*/
 
     public void delete(User user){
-        this.leagueRepository.delete(user);
+        this.userRepository.delete(user);
     }
 }

@@ -3,10 +3,7 @@ package com.nbu.sportapp.nbusportapp.entity;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
@@ -15,6 +12,10 @@ import java.util.ArrayList;
 public class Team extends BaseEntity {
     @NotBlank
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "league_id")
+    private League league;
 
 //    @NotBlank
 //    private Long leagueId;
@@ -28,6 +29,14 @@ public class Team extends BaseEntity {
     }
 
     public Team() {
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
     }
 
     public String getName() {
