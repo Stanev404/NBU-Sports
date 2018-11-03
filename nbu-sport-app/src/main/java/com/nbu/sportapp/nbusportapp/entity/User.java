@@ -2,6 +2,7 @@ package com.nbu.sportapp.nbusportapp.entity;
 
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -13,7 +14,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
-public class User extends BaseEntity {
+public class User extends AbstractPersistable<Long> {
+    private Long id;
+
     @NotBlank
     private String fullName;
 
@@ -61,4 +64,13 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

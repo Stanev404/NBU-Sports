@@ -16,6 +16,9 @@ public class TeamController {
     @Autowired
     TeamDAO teamDAO;
 
+    public TeamController() {
+    }
+
     /* to save an team*/
     @PostMapping("/team")
     public Team createTeam(@Valid @RequestBody Team team) {

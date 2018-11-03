@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDAO {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     /*to save an user in DB*/
 

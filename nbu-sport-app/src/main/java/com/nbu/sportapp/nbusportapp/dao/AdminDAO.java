@@ -13,7 +13,7 @@ import java.util.List;
 public class AdminDAO {
 
     @Autowired
-    AdminRepository AdminRepository;
+    private AdminRepository AdminRepository;
 
     /*to save an user in DB*/
 

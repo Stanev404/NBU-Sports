@@ -13,7 +13,7 @@ import java.util.List;
 public class LeagueDAO {
 
     @Autowired
-    LeagueRepository leagueRepository;
+    private LeagueRepository leagueRepository;
 
     /*to save an user in DB*/
 

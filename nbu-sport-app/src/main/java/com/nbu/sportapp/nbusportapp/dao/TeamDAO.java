@@ -1,7 +1,9 @@
 package com.nbu.sportapp.nbusportapp.dao;
 
 import com.nbu.sportapp.nbusportapp.entity.Team;
+import com.nbu.sportapp.nbusportapp.repository.LeagueRepository;
 import com.nbu.sportapp.nbusportapp.repository.TeamRepository;
+import com.nbu.sportapp.nbusportapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +14,15 @@ import java.util.List;
 public class TeamDAO {
 
     @Autowired
-    TeamRepository teamRepository;
+    private TeamRepository teamRepository;
+
+    @Autowired
+    private LeagueRepository leagueRepository;
 
     /*to save an user in DB*/
 
     public Team save(Team team) {
+        team.setLeague(this.leagueRepository.findOne(team.getLeagueId()));
         return this.teamRepository.save(team);
     }
 
@@ -37,4 +43,5 @@ public class TeamDAO {
     public void delete(Team team) {
         this.teamRepository.delete(team);
     }
+
 }

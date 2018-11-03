@@ -1,12 +1,9 @@
-package com.nbu.sportapp.nbusportapp.entity;
+package nbu.sport.app.entity;
 
-
-import javax.persistence.*;
-
-/**
- * Every class that needs an id have to inherit nbu.sport.app.entity.BaseEntity.
- * This entity ensures an id for every class that is in the DataBase.
- */
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class BaseEntity {
