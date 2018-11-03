@@ -1,12 +1,15 @@
 package com.nbu.sportapp.nbusportapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "teams")
@@ -25,6 +28,11 @@ public class Team extends AbstractPersistable<Long> {
     @JoinColumn(name = "league_id")
     @JsonBackReference
     private League league;
+
+    // team promenlivata ot player
+    @OneToMany(targetEntity = Player.class, mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Player> players = new HashSet<>();
 
 
 

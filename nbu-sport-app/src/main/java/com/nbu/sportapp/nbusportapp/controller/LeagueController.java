@@ -45,8 +45,9 @@ public class LeagueController {
         if (league == null) {
             return ResponseEntity.notFound().build();
         }
-
+        // remove setsportcategory if doesnt work
         league.setName(leagueDetails.getName());
+        league.setSportCategory(leagueDetails.getSportCategory());
         League updateLeague = this.leagueDAO.save(league);
         return ResponseEntity.ok().body(updateLeague);
 

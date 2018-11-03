@@ -3,6 +3,7 @@ package com.nbu.sportapp.nbusportapp.dao;
 import com.nbu.sportapp.nbusportapp.entity.League;
 import com.nbu.sportapp.nbusportapp.entity.User;
 import com.nbu.sportapp.nbusportapp.repository.LeagueRepository;
+import com.nbu.sportapp.nbusportapp.repository.SportCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,13 @@ public class LeagueDAO {
     @Autowired
     private LeagueRepository leagueRepository;
 
+    @Autowired
+    private SportCategoryRepository sportCategoryRepository;
+
     /*to save an user in DB*/
 
     public League save(League league) {
+        league.setSportCategory(this.sportCategoryRepository.findOne(league.getSportCategoryId()));
         return this.leagueRepository.save(league);
     }
 

@@ -1,5 +1,6 @@
 package com.nbu.sportapp.nbusportapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.tomcat.jni.Address;
 import org.hibernate.validator.constraints.NotBlank;
@@ -20,9 +21,17 @@ public class League extends AbstractPersistable<Long> {
     private String name;
 
     // league promenlivata ot team
-    @OneToMany(targetEntity = Team.class, mappedBy = "league", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Team.class, mappedBy = "league", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Team> teams = new HashSet<>();
+
+    @Transient
+    private Long sportCategoryId;
+
+    @ManyToOne
+    @JoinColumn(name = "sport_category_id")
+    @JsonBackReference
+    private SportCategory sportCategory;
 
 
     public League(String name, Set<Team> teams) {
@@ -48,6 +57,22 @@ public class League extends AbstractPersistable<Long> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getSportCategoryId() {
+        return sportCategoryId;
+    }
+
+    public void setSportCategoryId(Long sportCategoryId) {
+        this.sportCategoryId = sportCategoryId;
+    }
+
+    public SportCategory getSportCategory() {
+        return sportCategory;
+    }
+
+    public void setSportCategory(SportCategory sportCategory) {
+        this.sportCategory = sportCategory;
     }
 
     @Override

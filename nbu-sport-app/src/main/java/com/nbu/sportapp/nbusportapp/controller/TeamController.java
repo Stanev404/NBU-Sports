@@ -48,8 +48,9 @@ public class TeamController {
         if (team == null) {
             return ResponseEntity.notFound().build();
         }
-
+        // remove setLeague if doesnt work
         team.setName(teamDetails.getName());
+        team.setLeague(teamDetails.getLeague());
         Team updateTeam = this.teamDAO.save(team);
         return ResponseEntity.ok().body(updateTeam);
 
