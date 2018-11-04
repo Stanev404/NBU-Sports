@@ -17,7 +17,7 @@ public class Player extends AbstractPersistable<Long> {
     private Long id;
 
     @NotBlank
-    private String name;
+    private String nameOfPlayer;
 
     @NotBlank
     private String dateOfBirth;
@@ -34,17 +34,17 @@ public class Player extends AbstractPersistable<Long> {
     public Player() {
     }
 
-    public Player(String name, String dateOfBirth) {
-        this.name = name;
+    public Player(String nameOfPlayer, String dateOfBirth) {
+        this.nameOfPlayer = nameOfPlayer;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getName() {
-        return name;
+    public String getNameOfPlayer() {
+        return nameOfPlayer;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameOfPlayer(String nameOfPlayer) {
+        this.nameOfPlayer = nameOfPlayer;
     }
 
     public String getDateOfBirth() {

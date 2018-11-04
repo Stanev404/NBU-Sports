@@ -7,7 +7,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +17,7 @@ public class Team extends AbstractPersistable<Long> {
     private Long id;
 
     @NotBlank
-    private String name;
+    private String nameOfTeam;
 
     // we will create one transient field for leagueId
     @Transient
@@ -30,14 +29,14 @@ public class Team extends AbstractPersistable<Long> {
     private League league;
 
     // team promenlivata ot player
-    @OneToMany(targetEntity = Player.class, mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Player.class, mappedBy = "team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Player> players = new HashSet<>();
 
 
 
-    public Team(String name) {
-        this.name = name;
+    public Team(String nameOfTeam) {
+        this.nameOfTeam = nameOfTeam;
     }
 
     public Team() {
@@ -52,12 +51,12 @@ public class Team extends AbstractPersistable<Long> {
         this.league = league;
     }
 
-    public String getName() {
-        return name;
+    public String getNameOfTeam() {
+        return nameOfTeam;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameOfTeam(String nameOfTeam) {
+        this.nameOfTeam = nameOfTeam;
     }
 
     public Long getLeagueId() {
@@ -66,6 +65,14 @@ public class Team extends AbstractPersistable<Long> {
 
     public void setLeagueId(Long leagueId) {
         this.leagueId = leagueId;
+    }
+
+    public Set<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Set<Player> players) {
+        this.players = players;
     }
 
     @Override

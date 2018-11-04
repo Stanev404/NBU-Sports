@@ -49,7 +49,7 @@ public class PlayerController {
             return ResponseEntity.notFound().build();
         }
 
-        player.setName(playerDetails.getName());
+        player.setNameOfPlayer(playerDetails.getNameOfPlayer());
         player.setDateOfBirth(playerDetails.getDateOfBirth());
         Player updatePlayer = this.playerDAO.save(player);
         return ResponseEntity.ok().body(updatePlayer);

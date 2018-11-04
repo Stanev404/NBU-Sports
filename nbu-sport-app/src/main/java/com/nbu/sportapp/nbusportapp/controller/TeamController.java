@@ -1,6 +1,7 @@
 package com.nbu.sportapp.nbusportapp.controller;
 
 import com.nbu.sportapp.nbusportapp.dao.TeamDAO;
+import com.nbu.sportapp.nbusportapp.entity.Player;
 import com.nbu.sportapp.nbusportapp.entity.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/sportapp")
@@ -41,6 +43,16 @@ public class TeamController {
         return ResponseEntity.ok().body(team);
     }
 
+    /*get players by team ID*/
+    @GetMapping("/playersByTeam/{id}")
+    public ResponseEntity<Set<Player>> getPlayersByTeamId(@PathVariable(value = "id") Long teamId) {
+        Team team = this.teamDAO.findOne(teamId);
+        if (team == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(team.getPlayers());
+    }
+
     /*update an team*/
     @PutMapping("/teams/{id}")
     public ResponseEntity<Team> updateTeam(@PathVariable(value = "id") Long teamId, @Valid @RequestBody Team teamDetails) {
@@ -49,7 +61,7 @@ public class TeamController {
             return ResponseEntity.notFound().build();
         }
         // remove setLeague if doesnt work
-        team.setName(teamDetails.getName());
+        team.setNameOfTeam(teamDetails.getNameOfTeam());
         team.setLeague(teamDetails.getLeague());
         Team updateTeam = this.teamDAO.save(team);
         return ResponseEntity.ok().body(updateTeam);

@@ -1,7 +1,6 @@
 package com.nbu.sportapp.nbusportapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.apache.tomcat.jni.Address;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,7 +16,7 @@ public class SportCategory extends AbstractPersistable<Long> {
 
     private Long id;
     @NotBlank
-    private String name;
+    private String nameOfCategory;
 
 
     // sportCategory promenlivata ot league
@@ -28,8 +27,8 @@ public class SportCategory extends AbstractPersistable<Long> {
 
     public SportCategory(){}
 
-    public SportCategory(String name, Set<League> leagues) {
-        this.name = name;
+    public SportCategory(String nameOfCategory, Set<League> leagues) {
+        this.nameOfCategory = nameOfCategory;
         this.leagues = leagues;
     }
 
@@ -41,12 +40,12 @@ public class SportCategory extends AbstractPersistable<Long> {
         this.leagues = leagues;
     }
 
-    public String getName() {
-        return name;
+    public String getNameOfCategory() {
+        return nameOfCategory;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameOfCategory(String nameOfCategory) {
+        this.nameOfCategory = nameOfCategory;
     }
 
     @Override

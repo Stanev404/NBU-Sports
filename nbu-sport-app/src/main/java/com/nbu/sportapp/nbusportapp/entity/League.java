@@ -2,7 +2,6 @@ package com.nbu.sportapp.nbusportapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.apache.tomcat.jni.Address;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -18,7 +17,7 @@ public class League extends AbstractPersistable<Long> {
 
     private Long id;
     @NotBlank
-    private String name;
+    private String nameOfLeague;
 
     // league promenlivata ot team
     @OneToMany(targetEntity = Team.class, mappedBy = "league", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -34,8 +33,8 @@ public class League extends AbstractPersistable<Long> {
     private SportCategory sportCategory;
 
 
-    public League(String name, Set<Team> teams) {
-        this.name = name;
+    public League(String nameOfLeague, Set<Team> teams) {
+        this.nameOfLeague = nameOfLeague;
         this.teams = teams;
     }
 
@@ -51,12 +50,12 @@ public class League extends AbstractPersistable<Long> {
         this.teams = teams;
     }
 
-    public String getName() {
-        return name;
+    public String getNameOfLeague() {
+        return nameOfLeague;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameOfLeague(String nameOfLeague) {
+        this.nameOfLeague = nameOfLeague;
     }
 
     public Long getSportCategoryId() {

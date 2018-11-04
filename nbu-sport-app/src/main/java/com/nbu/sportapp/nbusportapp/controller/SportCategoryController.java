@@ -1,6 +1,7 @@
 package com.nbu.sportapp.nbusportapp.controller;
 
 import com.nbu.sportapp.nbusportapp.dao.SportCategoryDAO;
+import com.nbu.sportapp.nbusportapp.entity.League;
 import com.nbu.sportapp.nbusportapp.entity.SportCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/sportapp")
@@ -41,6 +43,16 @@ public class SportCategoryController {
         return ResponseEntity.ok().body(sportCategory);
     }
 
+    /*get leagues by sportCategory ID*/
+    @GetMapping("/leaguesBySportCategory/{id}")
+    public ResponseEntity<Set<League>> getLeaguesBySportCategoryId(@PathVariable(value = "id") Long sportCategoryId) {
+        SportCategory sportCategory = this.sportCategoryDAO.findOne(sportCategoryId);
+        if (sportCategory == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(sportCategory.getLeagues());
+    }
+
     /*update an sportCategory*/
     @PutMapping("/sportCategories/{id}")
     public ResponseEntity<SportCategory> updateSportCategory(@PathVariable(value = "id") Long sportCategoryId, @Valid @RequestBody SportCategory sportCategoryDetails) {
@@ -49,7 +61,7 @@ public class SportCategoryController {
             return ResponseEntity.notFound().build();
         }
         // remove bla bla
-        sportCategory.setName(sportCategoryDetails.getName());
+        sportCategory.setNameOfCategory(sportCategoryDetails.getNameOfCategory());
         sportCategory.setLeagues(sportCategoryDetails.getLeagues());
         SportCategory updateSportCategory = this.sportCategoryDAO.save(sportCategory);
         return ResponseEntity.ok().body(updateSportCategory);
