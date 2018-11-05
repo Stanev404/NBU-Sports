@@ -1,8 +1,8 @@
 package com.nbu.sportapp.nbusportapp.controller;
 
 import com.nbu.sportapp.nbusportapp.dao.TeamDAO;
-import com.nbu.sportapp.nbusportapp.entity.Player;
-import com.nbu.sportapp.nbusportapp.entity.Team;
+import com.nbu.sportapp.nbusportapp.entity.business.Player;
+import com.nbu.sportapp.nbusportapp.entity.business.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

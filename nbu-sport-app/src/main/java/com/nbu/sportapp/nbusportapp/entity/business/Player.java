@@ -1,4 +1,4 @@
-package com.nbu.sportapp.nbusportapp.entity;
+package com.nbu.sportapp.nbusportapp.entity.business;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;

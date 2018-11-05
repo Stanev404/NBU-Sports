@@ -1,9 +1,8 @@
 package com.nbu.sportapp.nbusportapp.dao;
 
-import com.nbu.sportapp.nbusportapp.entity.Team;
+import com.nbu.sportapp.nbusportapp.entity.business.Team;
 import com.nbu.sportapp.nbusportapp.repository.LeagueRepository;
 import com.nbu.sportapp.nbusportapp.repository.TeamRepository;
-import com.nbu.sportapp.nbusportapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

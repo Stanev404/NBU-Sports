@@ -1,4 +1,4 @@
-package com.nbu.sportapp.nbusportapp.entity;
+package com.nbu.sportapp.nbusportapp.entity.user;
 
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -8,14 +8,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 
 /**
- * A user with special privileges.
+ * A user is a person who is in the website session.
  */
 
 @Entity
-@Table(name = "admins")
+@Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
-public class Admin extends AbstractPersistable<Long> {
-
+public class User extends AbstractPersistable<Long> {
     private Long id;
 
     @NotBlank
@@ -28,10 +27,10 @@ public class Admin extends AbstractPersistable<Long> {
     private String password;
 
 
-    public Admin() {
+    public User() {
     }
 
-    public Admin(String fullName, String email, String password) {
+    public User(String fullName, String email, String password) {
         super();
         this.fullName = fullName;
         this.email = email;
